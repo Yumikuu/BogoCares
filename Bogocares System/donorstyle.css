@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Header container */
+.donor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Left side: logo + title */
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  display: flex;
+  gap: 4px;
+}
+
+.site-title .bogo {
+  color: rgb(30, 95, 140); /* Blue */
+}
+
+.site-title .cares {
+  color: rgb(76, 175, 80); /* Green */
+}
+
+
+.portal-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Right side: nav buttons + profile */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-btn {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #0077cc;
+  transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #005fa3;
+}
+
+.profile-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #0077cc;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 640px) {
+  .donor-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .logo-title {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .site-title {
+    font-size: 1.5rem;
+    gap: 2px;
+  }
+
+  .portal-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .header-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .nav-btn {
+    width: 100%;
+    max-width: 200px;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+}
+
