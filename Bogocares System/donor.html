@@ -4,33 +4,322 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donor Portal - BogoCares</title>
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="donorstyle.css">
+
+
 </head>
 <body>
-   <header class="donor-header">
-  <div class="header-left">
-    <div class="logo-title">
-      <img src="images/logo (1).png" alt="BogoCares logo" class="logo-img" />
-      <div class="title-group">
-        <h1 class="site-title">
-  <span class="bogo">Bogo</span><span class="cares">Cares</span>
-</h1>
 
-        <p class="portal-subtitle">Donor Portal</p>
-      </div>
+
+   <header class="donor-header">
+        <div class="header-container">
+            <div class="logo-title">
+                <img src="images/logo (1).png" alt="BogoCares logo" class="logo-img" />
+                <div class="title-group">
+                    <h1 class="site-title">
+                        <span class="bogo">Bogo</span><span class="cares">Cares</span>
+                    </h1>
+                    <p class="portal-subtitle">Donor Portal</p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="header-nav">
+                <!-- Toggle Switch with Labels and Icons -->
+                <div class="switch-container">
+                    <span class="switch-label active">
+                        <svg class="switch-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> 
+                            <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"></path> 
+                            <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"></path> 
+                            <path d="m2 15 6 6"></path> 
+                            <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"></path> 
+                        </svg>
+                        Request
+                    </span>
+                    <button class="toggle-switch" data-state="unchecked" aria-label="Toggle between Request and Donate">
+                    </button>
+                    <span class="switch-label inactive">
+                        <svg class="switch-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> 
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path> 
+                        </svg>
+                        Donate
+                    </span>
+                </div>
+                
+                <a href="#" class="nav-btn settings">
+                    <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    Settings
+                </a>
+                <div class="profile-icon">J</div>
+            </nav>
+
+            <!-- Burger Menu Button (Mobile Only) -->
+            <button class="burger-menu" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay">
+            <nav class="mobile-nav">
+                <!-- Toggle Switch with Labels and Icons -->
+                <div class="switch-container mobile-switch">
+                    <span class="switch-label active">
+                        <svg class="switch-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> 
+                            <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"></path> 
+                            <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"></path> 
+                            <path d="m2 15 6 6"></path> 
+                            <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"></path> 
+                        </svg>
+                        Request
+                    </span>
+                    <button class="toggle-switch mobile-toggle" data-state="unchecked" aria-label="Toggle between Request and Donate">
+                    </button>
+                    <span class="switch-label inactive">
+                        <svg class="switch-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> 
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path> 
+                        </svg>
+                        Donate
+                    </span>
+                </div>
+                
+                <a href="#" class="nav-btn mobile-settings">
+                    <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    Settings
+                </a>
+                <div class="profile-icon mobile-profile">J</div>
+            </nav>
+        </div>
+    </header>
+
+
+<main class="dashboard-container">
+  <!-- DONOR VIEW -->
+  <div id="donor-view" class="mode-view active">
+    <nav class="breadcrumb">
+      <a href="#" class="breadcrumb-link active" data-page="donor-home">
+        <svg class="breadcrumb-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="#" class="breadcrumb-link" data-page="donor-dashboard">
+        <svg class="breadcrumb-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18"></path>
+          <path d="M18 17V9"></path>
+          <path d="M13 17V5"></path>
+          <path d="M8 17v-3"></path>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+    </nav>
+
+<!-- Donor Home - KEEP BOTH WELCOME AND ACTIVE CAMPAIGNS -->
+<section id="donor-home" class="page-content">
+    <div class="welcome-section">
+        <div class="welcome-content">
+            <h2 class="welcome-title">Welcome back, Juan Dela Cruz!</h2>
+            <p class="welcome-message">Thank you for making a difference in Bogo City</p>
+        </div>
     </div>
+    
+    <div class="campaign-section">
+        <div class="campaign-content">
+            <h2 class="campaign-title">Active Campaigns in Bogo City</h2>
+            <p class="campaign-message">Explore ongoing initiatives and make an impact in your community</p>
+            
+            <!-- All metrics in one row - same sizes -->
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-number">5</div>
+                        <div class="metric-label">Active Campaigns</div>
+                    </div>
+                    <div class="metric-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-number">5</div>
+                        <div class="metric-label">Personal Requests</div>
+                    </div>
+                    <div class="metric-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"></path>
+                            <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"></path>
+                            <path d="m2 15 6 6"></path>
+                            <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-number">225</div>
+                        <div class="metric-label">Total Contributors</div>
+                    </div>
+                    <div class="metric-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-number">2</div>
+                        <div class="metric-label">Urgent Needs</div>
+                    </div>
+                    <div class="metric-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Campaign Locations Section -->
+            <div class="campaign-locations-section">
+                <div class="locations-header">
+                    <div class="locations-title-container">
+                        <div class="location-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h2 class="locations-title">Campaign Locations</h2>
+                    </div>
+                    <p class="locations-subtitle">Interactive map of active campaigns in Bogo City</p>
+                </div>
+                
+                <div class="locations-container">
+                    <!-- Google Map Container -->
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39205.39622420221!2d124.000252!3d11.050556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a4f19c0a4a5a5b%3A0x400cfcd68f2fe30!2sBogo%20City%2C%20Cebu!5e0!3m2!1sen!2sph!4v1699876543210!5m2!1sen!2sph" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0; border-radius: 12px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <div class="map-overlay">
+                            <h3>Bogo City, Cebu</h3>
+                            <p>Philippines</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campaign Details -->
+                    <div class="campaign-details">
+                        <div class="campaign-header">
+                            <h3>Maria Santos</h3>
+                            <span class="campaign-tag medical">Medical</span>
+                        </div>
+                        
+                        <div class="campaign-info">
+                            <p class="campaign-age">67 years old • Barangay Poblacion</p>
+                            <h4 class="campaign-need">Dialysis Treatment</h4>
+                            <p class="campaign-description">Urgent need for dialysis sessions. Unable to afford weekly treatments.</p>
+                        </div>
+                        
+                        <div class="campaign-progress-section">
+                            <div class="progress-info">
+                                <span class="progress-label">Amount Raised</span>
+                                <span class="progress-amount">₱8,500 / ₱15,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 56.7%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span class="progress-percent">56.7% funded</span>
+                                <span class="supporters">23 supporters</span>
+                                <span class="time-left">5 days left</span>
+                            </div>
+                        </div>
+                        
+                        <button class="donate-action-btn">Donate Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Donor Dashboard -->
+    <section id="donor-dashboard" class="page-content" style="display: none;">
+      <div class="dashboard-widgets">
+        <h2>Your Donor Dashboard</h2>
+        <p>Manage your donations and track your impact.</p>
+      </div>
+    </section>
   </div>
 
-  <nav class="header-nav">
-    <a href="#" class="nav-btn request">Request</a>
-    <a href="#" class="nav-btn donate">Donate</a>
-    <a href="#" class="nav-btn settings">Settings</a>
-    <div class="profile-icon">DO</div>
-  </nav>
-</header>
+  <!-- RECIPIENT VIEW -->
+  <div id="recipient-view" class="mode-view" style="display: none;">
+    <nav class="breadcrumb">
+      <a href="#" class="breadcrumb-link active" data-page="recipient-home">
+        <svg class="breadcrumb-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="#" class="breadcrumb-link" data-page="recipient-dashboard">
+        <svg class="breadcrumb-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18"></path>
+          <path d="M18 17V9"></path>
+          <path d="M13 17V5"></path>
+          <path d="M8 17v-3"></path>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+    </nav>
+
+    <!-- Recipient Home - KEEP ORIGINAL WELCOME -->
+    <section id="recipient-home" class="page-content">
+      <div class="welcome-section">
+        <div class="welcome-content">
+          <h2 class="welcome-title">Welcome back, Juan Dela Cruz!</h2>
+          <p class="welcome-message">We're here to support your needs in Bogo City</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recipient Dashboard -->
+    <section id="recipient-dashboard" class="page-content" style="display: none;">
+      <div class="dashboard-widgets">
+        <h2>Your Recipient Dashboard</h2>
+        <p>Request help and track your support history.</p>
+        
+      </div>
+    </section>
+  </div>
+</main>
 
 
-    <script src="javascript.js"></script>
+    <script src="donor.js"></script>
 
 </body>
 </html>
