@@ -1842,3 +1842,52 @@ a[href="index.html"] {
   background-color: #005fa3;
 }
 
+
+
+
+
+
+
+.action-button.active {
+  border-color: #4CAF50;
+  background-color: #f0fff0;
+}
+
+.action-button.donate.active {
+  border-color: #4CAF50;
+  background-color: #f0fff0;
+}
+
+.action-button.request.active {
+  border-color: #2196F3;
+  background-color: #f0f8ff;
+}
+
+
+
+
+
+/* Error message styling that matches your design */
+.error-messages {
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 15px 0;
+  color: #c33;
+}
+
+.error-messages p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Make sure your modal forms still look good */
+.modal-form {
+    width: 100%;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}

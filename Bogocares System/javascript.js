@@ -272,6 +272,50 @@ function openModalTo(choice) {
 
 
 
+  document.addEventListener('DOMContentLoaded', function() {
+    const donateBtn = document.querySelector('.action-button.donate');
+    const requestBtn = document.querySelector('.action-button.request');
+    const userTypeInput = document.getElementById('user-type-input');
+
+    // Set active state and hidden input value
+    function setUserType(type) {
+      // Remove active class from both buttons
+      donateBtn.classList.remove('active');
+      requestBtn.classList.remove('active');
+
+      // Add active class to selected button
+      if (type === 'donate') {
+        donateBtn.classList.add('active');
+        userTypeInput.value = 'donor';
+      } else {
+        requestBtn.classList.add('active');
+        userTypeInput.value = 'recipient';
+      }
+    }
+
+    // Add click events
+    donateBtn.addEventListener('click', function() {
+      setUserType('donate');
+    });
+
+    requestBtn.addEventListener('click', function() {
+      setUserType('request');
+    });
+
+    // Set default to donor
+    setUserType('donate');
+  });
+
+
+
+
+
+
+
+
+
+
+
 
 
 

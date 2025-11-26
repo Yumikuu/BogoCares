@@ -1,0 +1,1489 @@
+
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'donor') {
+    header("Location: index.php");
+    exit();
+}
+?>
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Portal - BogoCares</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="donorstyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="donor-header">
+    <div class="header-container">
+        <div class="logo-title">
+            <img src="images/logo (1).png" alt="BogoCares logo" class="logo-img" />
+            <div class="title-group">
+                <h1 class="site-title">
+                    <span class="bogo">Bogo</span><span class="cares">Cares</span>
+                </h1>
+                <p class="portal-subtitle">Donor Portal</p>
+            </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="header-nav">
+            <a href="recipient.html" class="nav-btn">
+                <i class="bi bi-people"></i>
+                Switch to Recipient
+            </a>
+            
+            <!-- Notification Bell -->
+            <div class="notification-container">
+                <button class="nav-btn notification-btn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            
+            <!-- Settings Dropdown -->
+            <div class="settings-container">
+                <button class="nav-btn settings-btn">
+                    <i class="bi bi-gear"></i>
+                    Settings
+                </button>
+                <div class="settings-dropdown">
+                    <a href="#" class="dropdown-item">
+                        <i class="bi bi-person"></i>
+                        Profile Settings
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="bi bi-bell"></i>
+                        Notifications
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="bi bi-shield-check"></i>
+                        Privacy & Security
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="bi bi-question-circle"></i>
+                        Help & Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+            
+            <div class="profile-icon">J</div>
+        </nav>
+
+        <!-- Burger Menu Button (Mobile Only) -->
+        <button class="burger-menu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <nav class="mobile-nav">
+            <!-- Switch to Recipient Portal - ADDED TO MOBILE MENU -->
+            <a href="recipient.html" class="nav-btn mobile-nav-btn">
+                <i class="bi bi-people"></i>
+                Switch to Recipient
+            </a>
+            
+            <!-- Mobile Notification -->
+            <a href="#" class="nav-btn mobile-nav-btn">
+                <i class="bi bi-bell"></i>
+                Notifications
+                <span class="mobile-badge">3</span>
+            </a>
+            
+            <!-- Mobile Settings -->
+            <a href="#" class="nav-btn mobile-nav-btn">
+                <i class="bi bi-gear"></i>
+                Settings
+            </a>
+            
+            <!-- Mobile Settings Options -->
+            <div class="mobile-settings-options">
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-person"></i>
+                    Profile Settings
+                </a>
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-bell"></i>
+                    Notifications
+                </a>
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-shield-check"></i>
+                    Privacy & Security
+                </a>
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-question-circle"></i>
+                    Help & Support
+                </a>
+                <a href="#" class="mobile-settings-item logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </a>
+            </div>
+            
+            <div class="profile-icon mobile-profile">J</div>
+        </nav>
+    </div>
+</header>
+        <!-- Burger Menu Button (Mobile Only) -->
+        <button class="burger-menu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <nav class="mobile-nav">
+            <!-- Toggle Switch REMOVED from mobile too -->
+            
+            <!-- Mobile Notification -->
+            <a href="#" class="nav-btn mobile-nav-btn">
+                <i class="bi bi-bell"></i>
+                Notifications
+                <span class="mobile-badge">3</span>
+            </a>
+            
+            <!-- Mobile Settings -->
+            <a href="#" class="nav-btn mobile-nav-btn">
+                <i class="bi bi-gear"></i>
+                Settings
+            </a>
+            
+            <!-- Mobile Settings Options -->
+            <div class="mobile-settings-options">
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-person"></i>
+                    Profile Settings
+                </a>
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-bell"></i>
+                    Notifications
+                </a>
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-shield-check"></i>
+                    Privacy & Security
+                </a>
+                <a href="#" class="mobile-settings-item">
+                    <i class="bi bi-question-circle"></i>
+                    Help & Support
+                </a>
+                <a href="#" class="mobile-settings-item logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </a>
+            </div>
+            
+            <div class="profile-icon mobile-profile">J</div>
+        </nav>
+    </div>
+</header>
+
+            <!-- Burger Menu Button (Mobile Only) -->
+            <button class="burger-menu" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay">
+            <nav class="mobile-nav">
+                
+                <!-- Mobile Notification -->
+                <a href="#" class="nav-btn mobile-nav-btn">
+                    <i class="bi bi-bell"></i>
+                    Notifications
+                    <span class="mobile-badge">3</span>
+                </a>
+                
+                <!-- Mobile Settings -->
+                <a href="#" class="nav-btn mobile-nav-btn">
+                    <i class="bi bi-gear"></i>
+                    Settings
+                </a>
+                
+                <!-- Mobile Settings Options -->
+                <div class="mobile-settings-options">
+                    <a href="#" class="mobile-settings-item">
+                        <i class="bi bi-person"></i>
+                        Profile Settings
+                    </a>
+                    <a href="#" class="mobile-settings-item">
+                        <i class="bi bi-bell"></i>
+                        Notifications
+                    </a>
+                    <a href="#" class="mobile-settings-item">
+                        <i class="bi bi-shield-check"></i>
+                        Privacy & Security
+                    </a>
+                    <a href="#" class="mobile-settings-item">
+                        <i class="bi bi-question-circle"></i>
+                        Help & Support
+                    </a>
+                    <a href="#" class="mobile-settings-item logout">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
+                    </a>
+                </div>
+                
+                <div class="profile-icon mobile-profile">J</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- DONOR VIEW -->
+        <div id="donor-view" class="mode-view active">
+            <nav class="breadcrumb">
+                <a href="#" class="breadcrumb-link active" data-page="donor-home">
+                    <svg class="breadcrumb-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="breadcrumb-link" data-page="donor-dashboard">
+                    <svg class="breadcrumb-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v18h18"></path>
+                        <path d="M18 17V9"></path>
+                        <path d="M13 17V5"></path>
+                        <path d="M8 17v-3"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+            </nav>
+
+            <!-- Donor Home -->
+            <section id="donor-home" class="page-content">
+                <div class="welcome-section">
+                    <div class="welcome-content">
+                        <h2 class="welcome-title">Welcome back, Juan Dela Cruz!</h2>
+                        <p class="welcome-message">Thank you for making a difference in Bogo City</p>
+                    </div>
+                </div>
+                
+                <div class="campaign-section">
+                    <div class="campaign-content">
+                        <h2 class="campaign-title">Active Campaigns in Bogo City</h2>
+                        <p class="campaign-message">Explore ongoing initiatives and make an impact in your community</p>
+                        
+                        <!-- Metrics Row -->
+                        <div class="metrics-row">
+                            <div class="metric-card">
+                                <div class="metric-content">
+                                    <div class="metric-number">5</div>
+                                    <div class="metric-label">Active Campaigns</div>
+                                </div>
+                                <div class="metric-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="6"></circle>
+                                        <circle cx="12" cy="12" r="2"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-content">
+                                    <div class="metric-number">5</div>
+                                    <div class="metric-label">Personal Requests</div>
+                                </div>
+                                <div class="metric-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"></path>
+                                        <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"></path>
+                                        <path d="m2 15 6 6"></path>
+                                        <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-content">
+                                    <div class="metric-number">225</div>
+                                    <div class="metric-label">Total Contributors</div>
+                                </div>
+                                <div class="metric-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-content">
+                                    <div class="metric-number">2</div>
+                                    <div class="metric-label">Urgent Needs</div>
+                                </div>
+                                <div class="metric-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Campaign Locations Section -->
+                        <div class="campaign-locations-section">
+                            <div class="locations-header">
+                                <div class="locations-title-container">
+                                    <div class="location-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                    </div>
+                                    <h2 class="locations-title">Campaign Locations</h2>
+                                </div>
+                                <p class="locations-subtitle">Interactive map of active campaigns in Bogo City</p>
+                            </div>
+                            
+                            <div class="locations-container">
+                                <!-- Google Map Container -->
+                                <div class="map-container">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d74515.32823387482!2d123.97026343705261!3d11.021398432966906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a868c95ba265a1%3A0x37a32f382065a8e0!2sBogo%20City%2C%20Cebu!5e0!3m2!1sen!2sph!4v1763261812505!5m2!1sen!2sph" 
+                                        width="100%" 
+                                        height="500" 
+                                        style="border:0; border-radius: 12px;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                    <div class="map-overlay">
+                                        <h3>Bogo City, Cebu</h3>
+                                        <p>Philippines</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Campaign Details -->
+                                <div class="campaign-details">
+                                    <!-- Campaign Type Toggle -->
+                                    <div class="campaign-type-toggle">
+                                        <button class="campaign-type-option active" data-type="campaigns">
+                                            <div class="toggle-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <circle cx="12" cy="12" r="6"></circle>
+                                                    <circle cx="12" cy="12" r="2"></circle>
+                                                </svg>
+                                            </div>
+                                            <span>Campaigns</span>
+                                        </button>
+                                        <button class="campaign-type-option" data-type="personal">
+                                            <div class="toggle-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                            </div>
+                                            <span>Personal Requests</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Campaigns Container -->
+<div class="campaigns-container">
+    <!-- Campaign Posts (School/Barangay) -->
+    <div class="campaign-type-content active" data-type="campaigns">
+        <!-- Campaign 1 - School Supplies Drive -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Bogo Central School</h3>
+                    <span class="campaign-tag education">Education</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">School Campaign • Barangay Poblacion</p>
+                    <div class="campaign-image">
+                        <img src="images/bogocentralschool.jpg" alt="Bogo Central School - School Supplies" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">School Supplies Drive 2024</h4>
+                    <p class="campaign-description">Providing school materials for 500 underprivileged students in Bogo Central School.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱25,000</span> / <span class="campaign-goal">₱50,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">50% funded</span>
+                        <span class="supporters">89 supporters</span>
+                        <span class="time-left">30 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+
+        <!-- Campaign 2 - Barangay Health Center -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Barangay Don Pedro</h3>
+                    <span class="campaign-tag medical">Medical</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">Community Campaign • Barangay Don Pedro</p>
+                    <div class="campaign-image">
+                        <img src="images/don pedro.jpg" alt="Barangay Health Center" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">Health Center Medical Equipment</h4>
+                    <p class="campaign-description">Equipping our barangay health center with essential medical devices and supplies.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱75,000</span> / <span class="campaign-goal">₱150,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">50% funded</span>
+                        <span class="supporters">156 supporters</span>
+                        <span class="time-left">45 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+
+        <!-- Campaign 3 - Community Garden -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Barangay Gairan</h3>
+                    <span class="campaign-tag food">Food</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">Community Campaign • Barangay Gairan</p>
+                    <div class="campaign-image">
+                        <img src="images/gairan.avif" alt="Community Garden Project" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">Community Vegetable Garden</h4>
+                    <p class="campaign-description">Establishing a sustainable vegetable garden to provide fresh produce for families in need.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱15,000</span> / <span class="campaign-goal">₱30,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">50% funded</span>
+                        <span class="supporters">42 supporters</span>
+                        <span class="time-left">60 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Requests Container -->
+    <div class="campaign-type-content" data-type="personal">
+        <!-- Personal Request 1 -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Maria Santos</h3>
+                    <span class="campaign-tag medical">Medical</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">67 years old • Barangay Poblacion</p>
+                    <div class="campaign-image">
+                        <img src="images/maria santos.jpg" alt="Maria Santos - Dialysis Treatment" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">Dialysis Treatment</h4>
+                    <p class="campaign-description">Urgent need for dialysis sessions. Unable to afford weekly treatments.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱8,500</span> / <span class="campaign-goal">₱15,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 56.7%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">56.7% funded</span>
+                        <span class="supporters">23 supporters</span>
+                        <span class="time-left">5 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+
+        <!-- Personal Request 2 -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Juan Dela Cruz</h3>
+                    <span class="campaign-tag education">Education</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">12 years old • Barangay Don Pedro</p>
+                    <div class="campaign-image">
+                        <img src="images/juan.webp" alt="Juan Dela Cruz - Education Support" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">School Supplies & Uniform</h4>
+                    <p class="campaign-description">Needs support for school materials and uniform to continue education.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱3,500</span> / <span class="campaign-goal">₱10,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 35%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">35% funded</span>
+                        <span class="supporters">15 supporters</span>
+                        <span class="time-left">12 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+
+        <!-- Personal Request 3 -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Pedro Santos</h3>
+                    <span class="campaign-tag food">Food</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">45 years old • Barangay Gairan</p>
+                    <div class="campaign-image">
+                        <img src="images/pedrosantos.jpg" alt="Pedro Santos - Food Assistance" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">Monthly Grocery Support</h4>
+                    <p class="campaign-description">Family of 5 needs assistance with basic food supplies and groceries.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱7,000</span> / <span class="campaign-goal">₱10,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">70% funded</span>
+                        <span class="supporters">28 supporters</span>
+                        <span class="time-left">8 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+
+        <!-- Personal Request 4 -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Maria Garcia</h3>
+                    <span class="campaign-tag housing">Housing</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">58 years old • Barangay Polambato</p>
+                    <div class="campaign-image">
+                        <img src="images/housing.jpg" alt="Maria Garcia - Housing Repair" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">Home Repair After Typhoon</h4>
+                    <p class="campaign-description">Roof and wall damage from recent typhoon needs immediate repair.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱22,500</span> / <span class="campaign-goal">₱50,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">45% funded</span>
+                        <span class="supporters">42 supporters</span>
+                        <span class="time-left">20 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+
+        <!-- Personal Request 5 -->
+        <div class="campaign-card">
+            <div class="campaign-content">
+                <div class="campaign-header">
+                    <h3>Roberto Lim</h3>
+                    <span class="campaign-tag medical">Medical</span>
+                </div>
+                
+                <div class="campaign-info">
+                    <p class="campaign-age">34 years old • Barangay La Paz</p>
+                    <div class="campaign-image">
+                        <img src="images/roberto.jpg" alt="Roberto Lim - Medical Surgery" class="campaign-img">
+                    </div>
+                    <h4 class="campaign-need">Surgery for Broken Leg</h4>
+                    <p class="campaign-description">Construction worker needs surgery after workplace accident.</p>
+                </div>
+                
+                <div class="campaign-progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label">Amount Raised</span>
+                        <span class="campaign-raised">₱30,000</span> / <span class="campaign-goal">₱50,000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="progress-percent">60% funded</span>
+                        <span class="supporters">67 supporters</span>
+                        <span class="time-left">15 days left</span>
+                    </div>
+                </div>
+                
+                <button class="donate-action-btn">Donate Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+            </section>
+
+            <!-- Donation Sidebar -->
+            <div id="donation-sidebar" class="donation-sidebar">
+                <div class="sidebar-header">
+                    <h3>Make a Donation</h3>
+                    <button class="close-sidebar">&times;</button>
+                </div>
+                
+                <div class="sidebar-content">
+                    <!-- Scrollable Content -->
+                    <div class="scrollable-content">
+                        <div class="donation-info">
+                            <h4 id="sidebar-campaign-name">Campaign Name</h4>
+                            <p id="sidebar-campaign-description">Campaign description will appear here</p>
+                            <div class="campaign-progress">
+                                <div class="progress-info">
+                                    <span>Raised: <strong id="sidebar-raised-amount">₱0</strong></span>
+                                    <span>Goal: <strong id="sidebar-goal-amount">₱0</strong></span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="sidebar-progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Donation Type Selection -->
+                        <div class="donation-type-selection">
+                            <h4>How would you like to donate?</h4>
+                            <div class="donation-type-options">
+                                <div class="donation-type-option active" data-type="money">
+                                    <div class="type-icon">
+                                        <i class="bi bi-cash-coin"></i>
+                                    </div>
+                                    <div class="type-info">
+                                        <h5>Money</h5>
+                                        <p>Financial contribution</p>
+                                    </div>
+                                </div>
+                                <div class="donation-type-option" data-type="items">
+                                    <div class="type-icon">
+                                        <i class="bi bi-box-seam"></i>
+                                    </div>
+                                    <div class="type-info">
+                                        <h5>Items</h5>
+                                        <p>Physical goods donation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Money Donation Section -->
+                        <div class="donation-section money-donation active">
+                            <div class="donation-amount">
+                                <h4>Enter Donation Amount</h4>
+                                <div class="amount-input-container">
+                                    <div class="currency-prefix">₱</div>
+                                    <input 
+                                        type="number" 
+                                        id="donation-amount" 
+                                        class="amount-input"
+                                        placeholder="0.00" 
+                                        min="1" 
+                                        step="1"
+                                    >
+                                </div>
+                                <div class="amount-suggestions">
+                                    <small>Suggested amounts: </small>
+                                    <button class="suggestion-amount" data-amount="100">₱100</button>
+                                    <button class="suggestion-amount" data-amount="500">₱500</button>
+                                    <button class="suggestion-amount" data-amount="1000">₱1,000</button>
+                                </div>
+                            </div>
+
+                            <div class="payment-method">
+                                <h4>Payment Method</h4>
+                                <div class="payment-options">
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="gcash" checked>
+                                        <span class="payment-icon"> <img src="images/gcash.png" alt="GCash" class="gcash-icon">
+                                        
+                                        </span>
+                                        <span>GCash</span>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="paymaya">
+                                        <span class="payment-icon">
+                                            <img src="images/maya.png" alt="GCash" class="gcash-icon">
+                                        </span>
+                                        <span>Maya</span>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="bank">
+                                        <span class="payment-icon">
+                                            <i class="bi bi-bank"></i>
+                                        </span>
+                                        <span>Bank Transfer</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Items Donation Section -->
+                        <div class="donation-section items-donation">
+                            <div class="items-categories">
+                                <h4>Select Item Category</h4>
+                                <div class="category-options">
+                                    <div class="category-option active" data-category="food">
+                                        <div class="category-icon">
+                                            <i class="bi bi-basket-fill"></i>
+                                        </div>
+                                        <span>Food & Groceries</span>
+                                    </div>
+                                    <div class="category-option" data-category="clothing">
+                                        <div class="category-icon">
+                                            <i class="fas fa-tshirt"></i>
+                                        </div>
+                                        <span>Clothing</span>
+                                    </div>
+                                    <div class="category-option" data-category="hygiene">
+                                        <div class="category-icon">
+                                            <i class="bi bi-droplet"></i>
+                                        </div>
+                                        <span>Hygiene Kits</span>
+                                    </div>
+                                    <div class="category-option" data-category="medical">
+                                        <div class="category-icon">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                        <span>Medical Supplies</span>
+                                    </div>
+                                    <div class="category-option" data-category="school">
+                                        <div class="category-icon">
+                                            <i class="bi bi-mortarboard"></i>
+                                        </div>
+                                        <span>School Supplies</span>
+                                    </div>
+                                    <div class="category-option" data-category="other">
+                                        <div class="category-icon">
+                                            <i class="bi bi-box"></i>
+                                        </div>
+                                        <span>Other Items</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item Description Input (Only shows for "Other" category) -->
+                            <div class="item-description-input" style="display: none;">
+                                <h4>Describe Your Items</h4>
+                                <textarea 
+                                    id="item-description" 
+                                    class="item-description-textarea"
+                                    placeholder="Please describe the items you'd like to donate (e.g., '2 bags of clothes, 1 box of books, kitchen utensils')"
+                                    rows="3"
+                                ></textarea>
+                                <small class="description-help">Be specific about what you're donating so the recipient knows what to expect.</small>
+                            </div>
+
+                            <!-- Chat Coordination Section -->
+                            <div class="chat-coordination">
+                                <div class="chat-header">
+                                    <h4><i class="bi bi-chat-dots"></i> Coordinate with Recipient</h4>
+                                    <p class="chat-description">Message the recipient to discuss meeting details, item specifications, or ask questions</p>
+                                </div>
+                                
+                                <div class="chat-actions">
+                                    <button class="chat-btn message-recipient-btn">
+                                        <span class="btn-icon">
+                                            <i class="bi bi-chat-left-text"></i>
+                                        </span>
+                                        Start Chat with Recipient
+                                    </button>
+                                </div>
+
+                                <div class="quick-messages">
+                                    <h5>Quick Start Messages</h5>
+                                    <div class="quick-message-options">
+                                        <button class="quick-msg-btn" data-message="Hi! I'd like to donate some items. When would be a good time to meet?">
+                                            <i class="bi bi-calendar-event"></i> Schedule Meeting
+                                        </button>
+                                        <button class="quick-msg-btn" data-message="Hello! What specific items are you most in need of right now?">
+                                            <i class="bi bi-question-circle"></i> Ask About Needs
+                                        </button>
+                                        <button class="quick-msg-btn" data-message="Hi there! Where would you prefer to meet for the item donation?">
+                                            <i class="bi bi-geo-alt"></i> Discuss Location
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="delivery-method">
+                                <h4>Delivery Option</h4>
+                                <div class="delivery-options">
+                                    <label class="delivery-option">
+                                        <input type="radio" name="delivery" value="pickup" checked>
+                                        <span class="delivery-icon">
+                                            <i class="bi bi-truck"></i>
+                                        </span>
+                                        <span>Schedule Pickup</span>
+                                    </label>
+                                    <label class="delivery-option">
+                                        <input type="radio" name="delivery" value="dropoff">
+                                        <span class="delivery-icon">
+                                            <i class="bi bi-building"></i>
+                                        </span>
+                                        <span>Drop-off at Center</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fixed Footer with Summary and Confirm Button -->
+                    <div class="sidebar-footer">
+                        <div class="donation-summary">
+                            <div class="summary-item">
+                                <span>Donation Type:</span>
+                                <span id="summary-type">Money</span>
+                            </div>
+                            <div class="summary-details">
+                                <!-- Money Summary -->
+                                <div class="summary-money">
+                                    <div class="summary-item">
+                                        <span>Amount:</span>
+                                        <span id="summary-amount">₱0</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span>Payment Method:</span>
+                                        <span id="summary-method">GCash</span>
+                                    </div>
+                                </div>
+                                <!-- Items Summary -->
+                                <div class="summary-items" style="display: none;">
+                                    <div class="summary-item">
+                                        <span>Items:</span>
+                                        <span id="summary-items-count">General Donation</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span>Delivery:</span>
+                                        <span id="summary-delivery">Pickup</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="summary-total">
+                                <span>Total:</span>
+                                <span id="summary-total">₱0</span>
+                            </div>
+                        </div>
+                        <button class="confirm-donation-btn">Confirm Donation</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donor Dashboard -->
+            <section id="donor-dashboard" class="page-content" style="display: none;">
+                <div class="dashboard-header">
+                    <h2>Your Donor Dashboard</h2>
+                    <p>Manage your donations and track your impact in Bogo City</p>
+                </div>
+              <!-- Stats Section -->
+<div class="dashboard-stats">
+    <div class="stat-card total-donated">
+        <div class="stat-icon">
+           <i class="bi bi-currency-dollar"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Total Donated</h3>
+            <p class="stat-value">₱15,750</p>
+            <p class="stat-change">+₱2,500 this month</p>
+        </div>
+    </div>
+    
+    <div class="stat-card people-helped">
+        <div class="stat-icon">
+            <i class="bi bi-people"></i>
+        </div>
+        <div class="stat-info">
+            <h3>People Helped</h3>
+            <p class="stat-value">67+</p>
+            <p class="stat-change">12 families supported</p>
+        </div>
+    </div>
+    
+    <div class="stat-card active-donations">
+        <div class="stat-icon">
+            <i class="bi bi-heart"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Active Donations</h3>
+            <p class="stat-value">3</p>
+            <p class="stat-change">Ongoing support</p>
+        </div>
+    </div>
+
+    <div class="stat-card impact-level-hero">
+        <div class="stat-icon hero-icon">
+            <i class="bi bi-award"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Impact Level</h3>
+            <p class="stat-value">Hero</p>
+            <p class="stat-change">Top 10% donor</p>
+        </div>
+    </div>
+</div>
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn active" data-tab="overview">
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Overview</span>
+                        </button>
+                        <button class="action-btn" data-tab="donations">
+                            <i class="bi bi-heart"></i>
+                            <span>My Donations</span>
+                        </button>
+                        <button class="action-btn" data-tab="impact">
+                            <i class="bi bi-graph-up"></i>
+                            <span>My Impact</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Overview Content -->
+                    <div class="tab-content overview-content active" data-tab="overview">
+                        <div class="overview-charts">
+                            <!-- Top Row: Donation Trend + Quick Donate -->
+                            <div class="charts-top-row">
+                                <!-- Donation Trend Chart -->
+                                <div class="chart-card trend-chart-card">
+                                    <div class="chart-header">
+                                        <h4>Donation Trend</h4>
+                                        <p>Your monthly giving over the last 6 months</p>
+                                    </div>
+                                    <div class="chart-container">
+                                        <canvas id="donationTrendChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row: Pie Chart + Quick Donate -->
+                            <div class="dashboard-row">
+                                <!-- Campaign Distribution Chart -->
+                                <div class="chart-card half-width">
+                                    <div class="chart-header">
+                                        <h4>Campaign Distribution</h4>
+                                        <p>Where your donations are making impact</p>
+                                    </div>
+                                    <div class="chart-container small-chart">
+                                        <canvas id="campaignDistributionChart"></canvas>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Donate Compact -->
+                                <div class="quick-donate-section compact half-width">
+                                    <h4>Quick Donate</h4>
+                                    <p class="quick-donate-subtitle">Choose a category to make a quick donation</p>
+                                    <div class="quick-donate-options">
+                                        <div class="quick-donate-card food">
+                                            <div class="donate-icon">
+                                                <i class="bi bi-box"></i>
+                                            </div>
+                                            <div class="donate-content">
+                                                <span class="donate-title">Food</span>
+                                                <button class="quick-donate-btn" onclick="openFoodDonation()">Donate</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="quick-donate-card clothing">
+                                            <div class="donate-icon">
+                                                <i class="fas fa-tshirt"></i>
+                                            </div>
+                                            <div class="donate-content">
+                                                <span class="donate-title">Clothing</span>
+                                                <button class="quick-donate-btn" onclick="openClothingDonation()">Donate</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="quick-donate-card medical">
+                                            <div class="donate-icon">
+                                                <i class="fas fa-plus"></i>
+                                            </div>
+                                            <div class="donate-content">
+                                                <span class="donate-title">Medical</span>
+                                                <button class="quick-donate-btn" onclick="openMedicalDonation()">Donate</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="quick-donate-card education">
+                                            <div class="donate-icon">
+                                                <i class="bi bi-mortarboard"></i>
+                                            </div>
+                                            <div class="donate-content">
+                                                <span class="donate-title">Education</span>
+                                                <button class="quick-donate-btn" onclick="openEducationDonation()">Donate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Donations -->
+                        <div class="recent-activity">
+                            <h3>Recent Donations</h3>
+                            <p class="activity-subtitle">Your latest contributions to the community</p>
+                            
+                            <div class="donations-table-container">
+                                <table class="donations-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Category</th>
+                                            <th>Recipient</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Nov 15, 2024</td>
+                                            <td>
+                                                <span class="category-badge money">Money</span>
+                                            </td>
+                                            <td>Bogo Flood Relief</td>
+                                            <td class="amount">₱2,500</td>
+                                            <td>
+                                                <span class="status-badge completed">Completed</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nov 10, 2024</td>
+                                            <td>
+                                                <span class="category-badge items">Items</span>
+                                            </td>
+                                            <td>Bogo Community Center</td>
+                                            <td class="amount">-</td>
+                                            <td>
+                                                <span class="status-badge delivered">Delivered</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oct 28, 2024</td>
+                                            <td>
+                                                <span class="category-badge money">Money</span>
+                                            </td>
+                                            <td>Education Support Fund</td>
+                                            <td class="amount">₱5,000</td>
+                                            <td>
+                                                <span class="status-badge completed">Completed</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oct 15, 2024</td>
+                                            <td>
+                                                <span class="category-badge money">Money</span>
+                                            </td>
+                                            <td>Medical Assistance</td>
+                                            <td class="amount">₱3,000</td>
+                                            <td>
+                                                <span class="status-badge completed">Completed</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oct 5, 2024</td>
+                                            <td>
+                                                <span class="category-badge items">Items</span>
+                                            </td>
+                                            <td>Bogo Orphanage</td>
+                                            <td class="amount">-</td>
+                                            <td>
+                                                <span class="status-badge pending">In Progress</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="view-all-container">
+                                <button class="view-all-btn" onclick="switchToDonationsTab()">
+                                    View All Donations
+                                    <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- My Donations Content -->
+                    <div class="tab-content donations-content" data-tab="donations">
+                        <div class="donations-header">
+                            <h4>Donation History</h4>
+                            <div class="donations-filter">
+                                <select class="filter-select">
+                                    <option value="all">All Donations</option>
+                                    <option value="month">This Month</option>
+                                    <option value="year">This Year</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="donations-table-container">
+                            <table class="donations-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Category</th>
+                                        <th>Recipient</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nov 15, 2024</td>
+                                        <td>
+                                            <span class="category-badge money">Money</span>
+                                        </td>
+                                        <td>Bogo Flood Relief</td>
+                                        <td class="amount">₱2,500</td>
+                                        <td>
+                                            <span class="status-badge completed">Completed</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-link view-details">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 10, 2024</td>
+                                        <td>
+                                            <span class="category-badge items">Items</span>
+                                        </td>
+                                        <td>Bogo Community Center</td>
+                                        <td class="amount">-</td>
+                                        <td>
+                                            <span class="status-badge delivered">Delivered</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-link view-details">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 28, 2024</td>
+                                        <td>
+                                            <span class="category-badge money">Money</span>
+                                        </td>
+                                        <td>Education Support Fund</td>
+                                        <td class="amount">₱5,000</td>
+                                        <td>
+                                            <span class="status-badge completed">Completed</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-link view-details">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 15, 2024</td>
+                                        <td>
+                                            <span class="category-badge money">Money</span>
+                                        </td>
+                                        <td>Medical Assistance</td>
+                                        <td class="amount">₱3,000</td>
+                                        <td>
+                                            <span class="status-badge completed">Completed</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-link view-details">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 5, 2024</td>
+                                        <td>
+                                            <span class="category-badge items">Items</span>
+                                        </td>
+                                        <td>Bogo Orphanage</td>
+                                        <td class="amount">-</td>
+                                        <td>
+                                            <span class="status-badge pending">In Progress</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-link track">Track</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sep 20, 2024</td>
+                                        <td>
+                                            <span class="category-badge money">Money</span>
+                                        </td>
+                                        <td>Disaster Response</td>
+                                        <td class="amount">₱5,250</td>
+                                        <td>
+                                            <span class="status-badge completed">Completed</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-link view-details">View Details</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="donations-summary">
+                            <div class="summary-total">
+                                <strong>Total Donated:</strong> ₱15,750
+                            </div>
+                            <div class="summary-count">
+                                <strong>Total Donations:</strong> 6
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- My Impact Content -->
+                    <div class="tab-content impact-content" data-tab="impact">
+                        <!-- Your Impact by Category -->
+                        <div class="impact-categories">
+                            <h3>Your Impact by Category</h3>
+                            <p class="impact-subtitle">See how your donations are making a difference</p>
+                            
+                            <div class="category-progress">
+                                <div class="category-header">
+                                    <div class="category-name">
+                                        <div class="category-icon food-icon">
+                                            <i class="bi bi-box"></i>
+                                        </div>
+                                        Food Support
+                                    </div>
+                                    <div class="category-percentage">75%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="category-progress">
+                                <div class="category-header">
+                                    <div class="category-name">
+                                        <div class="category-icon clothing-icon">
+                                            <i class="fas fa-tshirt"></i>
+                                        </div>
+                                        Clothing
+                                    </div>
+                                    <div class="category-percentage">60%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="category-progress">
+                                <div class="category-header">
+                                    <div class="category-name">
+                                        <div class="category-icon medical-icon">
+                                            <i class="bi bi-heart-pulse"></i>
+                                        </div>
+                                        Medical Aid
+                                    </div>
+                                    <div class="category-percentage">45%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="category-progress">
+                                <div class="category-header">
+                                    <div class="category-name">
+                                        <div class="category-icon education-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        Education
+                                    </div>
+                                    <div class="category-percentage">85%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                  <!-- Achievements Section -->
+<div class="achievements-section">
+    <h4>Your Impact Journey</h4>
+    <div class="achievements-grid">
+        <!-- Beginner Level -->
+        <div class="achievement-card unlocked beginner-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-emoji-smile"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>First Time Donor</h5>
+                <p>Made your first donation to help the community</p>
+                <span class="achievement-date">Beginner Level</span>
+            </div>
+        </div>
+
+        <!-- Supporter Level -->
+        <div class="achievement-card unlocked supporter-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-heart"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>Regular Supporter</h5>
+                <p>3 consecutive months of consistent donations</p>
+                <span class="achievement-date">Supporter Level</span>
+            </div>
+        </div>
+
+        <!-- Helper Level -->
+        <div class="achievement-card unlocked helper-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-hand-thumbs-up"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>Dedicated Helper</h5>
+                <p>Supported 5 different campaigns</p>
+                <span class="achievement-date">Helper Level</span>
+            </div>
+        </div>
+
+        <!-- Champion Level -->
+        <div class="achievement-card unlocked champion-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-star"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>Community Champion</h5>
+                <p>Reached ₱5,000 in total donations</p>
+                <span class="achievement-date">Champion Level</span>
+            </div>
+        </div>
+
+        <!-- HERO LEVEL - Current -->
+        <div class="achievement-card unlocked hero-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-trophy"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>Community Hero</h5>
+                <p>Reached ₱10,000 in total donations impact</p>
+                <span class="achievement-date">Hero Level - CURRENT</span>
+            </div>
+        </div>
+
+        <!-- Super Hero Level -->
+        <div class="achievement-card locked super-hero-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-award"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>Super Hero</h5>
+                <p>Reach ₱25,000 total donations milestone</p>
+                <span class="achievement-progress">₱15,750 / ₱25,000</span>
+            </div>
+        </div>
+
+        <!-- Legend Level -->
+        <div class="achievement-card locked legend-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-gem"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>Legendary Impact</h5>
+                <p>Reach ₱50,000 total donations</p>
+                <span class="achievement-progress">₱15,750 / ₱50,000</span>
+            </div>
+        </div>
+
+        <!-- Ultimate Level -->
+        <div class="achievement-card locked ultimate-tier">
+            <div class="achievement-icon">
+                <i class="bi bi-lightning-charge"></i>
+            </div>
+            <div class="achievement-info">
+                <h5>Ultimate Philanthropist</h5>
+                <p>Reach ₱100,000 total donations</p>
+                <span class="achievement-progress">₱15,750 / ₱100,000</span>
+            </div>
+        </div>
+    </div>
+</div>
+            </section>
+        </div>
+    </main>
+
+    <script src="donor.js"></script>
+</body>
+</html>
