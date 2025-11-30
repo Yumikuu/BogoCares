@@ -4,9 +4,9 @@ session_start();
 // Check if user is logged in
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_type'] === 'donor') {
-        header("Location: donor-dashboard.php");
+        header("Location: donor.php");
     } else {
-        header("Location: recipient-dashboard.php");
+        header("Location: recipient.php");
     }
     exit();
 }
@@ -24,14 +24,8 @@ unset($_SESSION['login_errors']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BogoCares</title>
-    <!-- Your existing CSS and head content continues below... -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BogoCares - Building a Stronger Community</title><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>BogoCares - Building a Stronger Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="flex.css">
    
@@ -578,79 +572,107 @@ unset($_SESSION['login_errors']);
 
 
     
-        <!-- Sign Up Form -->
-    <form class="modal-form" id="signup-form" action="signup-process.php" method="POST" enctype="multipart/form-data">
-  <label for="fullname">Full Name</label>
-  <div class="input-container">
-    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-      <circle cx="12" cy="7" r="4"></circle>
-    </svg>
-    <input type="text" id="fullname" name="full_name" placeholder="Juan Dela Cruz" required>
-  </div>
+      <!-- Sign Up Form -->
+<form class="modal-form" id="signup-form" action="signup-process.php" method="POST" enctype="multipart/form-data">
+      <div class="signup-actions">
+        <p class="action-label">I want to</p>
+        <p class="action-note">This option can be changed anytime.</p>
+        <div class="modal-actions">
+          <button type="button" class="action-button donate active" data-choice="donate">
+            <div class="button-content">
+              <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+              <span class="button-text">Donate</span>
+            </div>
+          </button>
 
-  <label for="signup-email">Email</label>
-  <div class="input-container">
-    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-      <polyline points="22,6 12,13 2,6"></polyline>
-    </svg>
-    <input type="email" id="signup-email" name="email" placeholder="your.email@example.com" required>
-  </div>
+          <button type="button" class="action-button request" data-choice="request">
+            <div class="button-content">
+              <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"></path>
+                <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"></path>
+                <path d="m2 15 6 6"></path>
+                <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"></path>
+              </svg>
+              <span class="button-text">Request Assistance</span>
+            </div>
+          </button>
+        </div>
+        <input type="hidden" name="user_type" id="user-type-input" value="donor" required>
+      </div>
 
-  <label for="signup-phone">Phone Number</label>
-  <div class="input-container">
-    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-    </svg>
-    <input type="tel" id="signup-phone" name="phone_number" placeholder="+63 900 000 0000" required>
-  </div>
+      <label for="fullname">Full Name</label>
+      <div class="input-container">
+        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <input type="text" id="fullname" name="full_name" placeholder="Juan Dela Cruz" required>
+      </div>
 
-  <label for="signup-password">Password</label>
-  <div class="input-container">
-    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-    </svg>
-    <input type="password" id="signup-password" name="password" placeholder="••••••••" required>
-  </div>
+      <label for="signup-email">Email</label>
+      <div class="input-container">
+        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <input type="email" id="signup-email" name="email" placeholder="your.email@example.com" required>
+      </div>
 
-  <label for="confirm-password">Confirm Password</label>
-  <div class="input-container">
-    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-    </svg>
-    <input type="password" id="confirm-password" name="confirm_password" placeholder="••••••••" required>
-  </div>
+      <label for="signup-phone">Phone Number</label>
+      <div class="input-container">
+        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <input type="tel" id="signup-phone" name="phone_number" placeholder="+63 900 000 0000" required>
+      </div>
 
-  <div class="form-group upload-id">
-    <label for="id-upload" class="form-label">Upload ID</label>
-    <div class="upload-wrapper">
-      <input type="file" id="id-upload" name="id_document" class="file-upload" accept=".jpg,.jpeg,.png,.pdf" required>
-      <svg xmlns="http://www.w3.org/2000/svg" class="upload-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-        <polyline points="17 8 12 3 7 8"></polyline>
-        <line x1="12" y1="3" x2="12" y2="15"></line>
-      </svg>
-    </div>
-  </div>
+      <label for="signup-password">Password</label>
+      <div class="input-container">
+        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <input type="password" id="signup-password" name="password" placeholder="••••••••" required>
+      </div>
 
-  <!-- Display signup errors -->
-  <?php if (!empty($signup_errors)): ?>
-    <div class="error-messages">
-      <?php foreach ($signup_errors as $error): ?>
-        <p class="error"><?php echo htmlspecialchars($error); ?></p>
-      <?php endforeach; ?>
-    </div>
-  <?php endif; ?>
+      <label for="confirm-password">Confirm Password</label>
+      <div class="input-container">
+        <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <input type="password" id="confirm-password" name="confirm_password" placeholder="••••••••" required>
+      </div>
 
-  <button type="submit" class="modal-submit">Create Account</button>
-</form>
+      <div class="form-group upload-id">
+        <label for="id-upload" class="form-label">Upload ID</label>
+        <div class="upload-wrapper">
+          <input type="file" id="id-upload" name="id_document" class="file-upload" accept=".jpg,.jpeg,.png,.pdf" required>
+          <svg xmlns="http://www.w3.org/2000/svg" class="upload-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+      </div>
 
-<p class="modal-footer-text">
-  By continuing, you agree to BogoCares' Terms of Service and Privacy Policy.
-</p>
+      <!-- Display signup errors -->
+      <?php if (!empty($signup_errors)): ?>
+        <div class="error-messages">
+          <?php foreach ($signup_errors as $error): ?>
+            <p class="error"><?php echo htmlspecialchars($error); ?></p>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+
+      <button type="submit" class="modal-submit">Create Account</button>
+    </form>
+
+    <p class="modal-footer-text">
+      By continuing, you agree to BogoCares' Terms of Service and Privacy Policy.
+    </p>
   </div>
 </div>
 </form>

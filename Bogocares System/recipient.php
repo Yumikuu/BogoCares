@@ -1,6 +1,21 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'recipient') {
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+
+// Get user data
+require_once 'config/database.php';
+require_once 'models/User.php';
+
+$database = new Database();
+$db = $database->getConnection();
+$user = new User($db);
+$user->user_id = $_SESSION['user_id'];
+
+if (!$user->readOne()) {
+    session_destroy();
     header("Location: index.php");
     exit();
 }
@@ -33,23 +48,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'recipient') {
             <!-- Desktop Navigation -->
             <nav class="header-nav">
                 <!-- Switch to Donor Button -->
-                <a href="donor.html" class="nav-btn">
+                <a href="donor.php" class="nav-btn">
     <i class="bi bi-person"></i>
     Switch to Donor
 </a>
-                <!-- In both donor.php and recipient.php -->
-<div class="profile-settings">
-    <h3>Account Type</h3>
-    <p>Your primary account type: <strong><?php echo $_SESSION['user_type']; ?></strong></p>
-    <form action="update-profile.php" method="POST">
-        <label>Change your primary account type:</label>
-        <select name="new_user_type">
-            <option value="donor" <?php echo $_SESSION['user_type'] == 'donor' ? 'selected' : ''; ?>>Donor</option>
-            <option value="recipient" <?php echo $_SESSION['user_type'] == 'recipient' ? 'selected' : ''; ?>>Recipient</option>
-        </select>
-        <button type="submit">Update</button>
-    </form>
-</div>
+
                 <!-- Notification Bell -->
                 <div class="notification-container">
                     <button class="nav-btn notification-btn">
@@ -82,14 +85,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'recipient') {
                             Help & Support
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item logout">
-                            <i class="bi bi-box-arrow-right"></i>
-                            Logout
-                        </a>
+                       <a href="logout.php" class="dropdown-item logout">
+    <i class="bi bi-box-arrow-right"></i>
+    Logout
+</a>
                     </div>
                 </div>
                 
-                <div class="profile-icon">J</div>
+                <div class="profile-icon"><?php echo strtoupper(substr($user->full_name, 0, 1)); ?></div>
             </nav>
 
             <!-- Burger Menu Button (Mobile Only) -->
@@ -104,7 +107,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'recipient') {
         <div class="mobile-menu-overlay">
             <nav class="mobile-nav">
                 <!-- Mobile Switch to Donor Button -->
-                <a href="donor.html" class="mobile-nav-btn">
+                <a href="donor.php" class="mobile-nav-btn">
     <i class="bi bi-person"></i>
     Switch to Donor
 </a>
@@ -140,13 +143,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'recipient') {
                         <i class="bi bi-question-circle"></i>
                         Help & Support
                     </a>
-                    <a href="#" class="mobile-settings-item logout">
-                        <i class="bi bi-box-arrow-right"></i>
-                        Logout
-                    </a>
+                    <a href="logout.php" class="mobile-settings-item logout">
+    <i class="bi bi-box-arrow-right"></i>
+    Logout
+</a>
                 </div>
                 
-                <div class="profile-icon mobile-profile">J</div>
+               <div class="profile-icon mobile-profile"><?php echo strtoupper(substr($user->full_name, 0, 1)); ?></div>
             </nav>
         </div>
     </header>
@@ -177,7 +180,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'recipient') {
 <section id="recipient-home" class="page-content">
     <div class="welcome-section">
         <div class="welcome-content">
-            <h2 class="welcome-title">Welcome back, Juan Dela Cruz!</h2>
+            <h2 class="welcome-title">Welcome back, <?php echo htmlspecialchars($user->full_name); ?>!</h2>
             <p class="welcome-message">We're here to support your needs in Bogo City</p>
         </div>
     </div>

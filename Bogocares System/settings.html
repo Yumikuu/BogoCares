@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - BogoCares Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <img src="images/logo.png" alt="BogoCares Logo" class="logo me-2">
+                <span class="brand-text">
+                    <span class="brand-name-white">BogoCares</span>
+                </span>
+                <span class="admin-text">Admin</span>
+            </div>
+            
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">
+                        <i class="bi bi-speedometer2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="donors.html">
+                        <i class="bi bi-people"></i>Donors
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="donations.html">
+                        <i class="bi bi-cash-coin"></i>Donations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="analytics.html">
+                        <i class="bi bi-bar-chart"></i>Analytics
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="settings.html">
+                        <i class="bi bi-gear"></i>Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="help.html">
+                        <i class="bi bi-question-circle"></i>Help
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content flex-grow-1" style="margin-left: 0;">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <a class="navbar-brand ms-2" href="#">
+                        <img src="images/logo.png" alt="BogoCares Logo" class="logo me-2">
+                        <span class="brand-name">BogoCares</span>
+                    </a>
+                    
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown me-3">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="notificationsDropdown" data-bs-toggle="dropdown">
+                                <i class="bi bi-bell fs-5 text-muted"></i>
+                                <span class="badge bg-danger rounded-pill position-absolute translate-middle">1</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">System maintenance scheduled</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown">
+                                <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="Admin" class="rounded-circle me-2" width="32" height="32">
+                                <span class="d-none d-md-inline">Admin User</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Page Specific Content -->
+            <div class="container-fluid py-4">
+                <!-- Page Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h2 class="mb-1">System Settings</h2>
+                        <p class="text-muted">Manage your BogoCares platform configuration</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-secondary me-2" id="resetSettingsBtn">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Reset to Default
+                        </button>
+                        <button class="btn btn-primary-custom" id="saveSettingsBtn">
+                            <i class="bi bi-check-circle me-2"></i>Save Changes
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Settings Tabs -->
+                <div class="row">
+                    <div class="col-lg-3 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body p-0">
+                                <div class="list-group list-group-flush">
+                                    <a href="#general" class="list-group-item list-group-item-action active" data-bs-toggle="list">
+                                        <i class="bi bi-gear me-2"></i>General Settings
+                                    </a>
+                                    <a href="#payment" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                                        <i class="bi bi-credit-card me-2"></i>Payment Settings
+                                    </a>
+                                    <a href="#notifications" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                                        <i class="bi bi-bell me-2"></i>Notifications
+                                    </a>
+                                    <a href="#security" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                                        <i class="bi bi-shield-check me-2"></i>Security
+                                    </a>
+                                    <a href="#integrations" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                                        <i class="bi bi-puzzle me-2"></i>Integrations
+                                    </a>
+                                    <a href="#backup" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                                        <i class="bi bi-cloud-arrow-down me-2"></i>Backup & Restore
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-9">
+                        <div class="tab-content">
+                            <!-- General Settings -->
+                            <div class="tab-pane fade show active" id="general">
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-white">General Settings</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="generalSettingsForm">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="orgName" class="form-label">Organization Name</label>
+                                                    <input type="text" class="form-control" id="orgName" value="BogoCares Foundation">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="orgEmail" class="form-label">Contact Email</label>
+                                                    <input type="email" class="form-control" id="orgEmail" value="contact@bogocares.org">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="orgPhone" class="form-label">Contact Phone</label>
+                                                    <input type="tel" class="form-control" id="orgPhone" value="+1 (555) 123-4567">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="orgWebsite" class="form-label">Website</label>
+                                                    <input type="url" class="form-control" id="orgWebsite" value="https://bogocares.org">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="orgAddress" class="form-label">Address</label>
+                                                <textarea class="form-control" id="orgAddress" rows="2">123 Charity Street, Hope City, HC 12345</textarea>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="currency" class="form-label">Default Currency</label>
+                                                    <select class="form-select" id="currency">
+                                                        <option value="USD" selected>US Dollar (USD)</option>
+                                                        <option value="EUR">Euro (EUR)</option>
+                                                        <option value="GBP">British Pound (GBP)</option>
+                                                        <option value="CAD">Canadian Dollar (CAD)</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="timezone" class="form-label">Timezone</label>
+                                                    <select class="form-select" id="timezone">
+                                                        <option value="est" selected>Eastern Time (ET)</option>
+                                                        <option value="cst">Central Time (CT)</option>
+                                                        <option value="pst">Pacific Time (PT)</option>
+                                                        <option value="gmt">Greenwich Mean Time (GMT)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="orgDescription" class="form-label">Organization Description</label>
+                                                <textarea class="form-control" id="orgDescription" rows="4">BogoCares is a non-profit organization dedicated to making the world a better place through charitable donations and community support.</textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Payment Settings -->
+                            <div class="tab-pane fade" id="payment">
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-white">Payment Settings</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="paymentSettingsForm">
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Payment Methods</h6>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="creditCard" checked>
+                                                    <label class="form-check-label" for="creditCard">Credit/Debit Cards</label>
+                                                </div>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="paypal" checked>
+                                                    <label class="form-check-label" for="paypal">PayPal</label>
+                                                </div>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="bankTransfer">
+                                                    <label class="form-check-label" for="bankTransfer">Bank Transfer</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="crypto">
+                                                    <label class="form-check-label" for="crypto">Cryptocurrency</label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Stripe Integration</h6>
+                                                <div class="mb-3">
+                                                    <label for="stripePublicKey" class="form-label">Public Key</label>
+                                                    <input type="text" class="form-control" id="stripePublicKey" placeholder="pk_test_...">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="stripeSecretKey" class="form-label">Secret Key</label>
+                                                    <input type="password" class="form-control" id="stripeSecretKey" placeholder="sk_test_...">
+                                                </div>
+                                                <div class="alert alert-info">
+                                                    <small><i class="bi bi-info-circle me-1"></i> Your Stripe keys are used to process payments securely.</small>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <h6 class="mb-3">Payment Options</h6>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="recurringDonations" checked>
+                                                    <label class="form-check-label" for="recurringDonations">Enable Recurring Donations</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="anonymousDonations">
+                                                    <label class="form-check-label" for="anonymousDonations">Allow Anonymous Donations</label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Notifications -->
+                            <div class="tab-pane fade" id="notifications">
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-white">Notification Settings</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="notificationSettingsForm">
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Email Notifications</h6>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="newDonationEmail" checked>
+                                                    <label class="form-check-label" for="newDonationEmail">New donation received</label>
+                                                </div>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="newDonorEmail" checked>
+                                                    <label class="form-check-label" for="newDonorEmail">New donor registered</label>
+                                                </div>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="failedPaymentEmail" checked>
+                                                    <label class="form-check-label" for="failedPaymentEmail">Failed payment</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="monthlyReportEmail">
+                                                    <label class="form-check-label" for="monthlyReportEmail">Monthly report</label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Admin Notifications</h6>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="lowBalanceAlert" checked>
+                                                    <label class="form-check-label" for="lowBalanceAlert">Low balance alerts</label>
+                                                </div>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="systemAlerts" checked>
+                                                    <label class="form-check-label" for="systemAlerts">System alerts</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="securityAlerts" checked>
+                                                    <label class="form-check-label" for="securityAlerts">Security alerts</label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <h6 class="mb-3">Notification Frequency</h6>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="frequency" id="frequencyImmediate" checked>
+                                                    <label class="form-check-label" for="frequencyImmediate">
+                                                        Immediate
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="frequency" id="frequencyDaily">
+                                                    <label class="form-check-label" for="frequencyDaily">
+                                                        Daily digest
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="frequency" id="frequencyWeekly">
+                                                    <label class="form-check-label" for="frequencyWeekly">
+                                                        Weekly summary
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Security -->
+                            <div class="tab-pane fade" id="security">
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-white">Security Settings</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="securitySettingsForm">
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Password Requirements</h6>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="requireStrongPassword" checked>
+                                                    <label class="form-check-label" for="requireStrongPassword">Require strong passwords</label>
+                                                </div>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="passwordExpiration">
+                                                    <label class="form-check-label" for="passwordExpiration">Password expiration (90 days)</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="preventReuse" checked>
+                                                    <label class="form-check-label" for="preventReuse">Prevent password reuse</label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Two-Factor Authentication</h6>
+                                                <div class="form-check form-switch mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="enable2FA">
+                                                    <label class="form-check-label" for="enable2FA">Enable 2FA for all admin accounts</label>
+                                                </div>
+                                                <div class="alert alert-warning">
+                                                    <small><i class="bi bi-exclamation-triangle me-1"></i> Two-factor authentication adds an extra layer of security to your account.</small>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Session Management</h6>
+                                                <div class="mb-3">
+                                                    <label for="sessionTimeout" class="form-label">Session Timeout (minutes)</label>
+                                                    <input type="number" class="form-control" id="sessionTimeout" value="60" min="15">
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="singleSession" checked>
+                                                    <label class="form-check-label" for="singleSession">Allow only one active session per user</label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <h6 class="mb-3">IP Restrictions</h6>
+                                                <div class="mb-3">
+                                                    <label for="allowedIPs" class="form-label">Allowed IP Addresses (one per line)</label>
+                                                    <textarea class="form-control" id="allowedIPs" rows="3" placeholder="192.168.1.1&#10;10.0.0.1"></textarea>
+                                                </div>
+                                                <div class="form-text">Leave empty to allow access from any IP address.</div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Integrations -->
+                            <div class="tab-pane fade" id="integrations">
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-white">Third-Party Integrations</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h6 class="mb-0">Google Analytics</h6>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="googleAnalytics">
+                                                    <label class="form-check-label" for="googleAnalytics"></label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="gaTrackingId" class="form-label">Tracking ID</label>
+                                                <input type="text" class="form-control" id="gaTrackingId" placeholder="UA-XXXXXXXXX-X">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h6 class="mb-0">MailChimp</h6>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="mailchimpIntegration" checked>
+                                                    <label class="form-check-label" for="mailchimpIntegration"></label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="mailchimpApiKey" class="form-label">API Key</label>
+                                                <input type="password" class="form-control" id="mailchimpApiKey" placeholder="Your MailChimp API key">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="mailchimpListId" class="form-label">Audience ID</label>
+                                                <input type="text" class="form-control" id="mailchimpListId" placeholder="Your audience/list ID">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h6 class="mb-0">Facebook Pixel</h6>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="facebookPixel">
+                                                    <label class="form-check-label" for="facebookPixel"></label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="facebookPixelId" class="form-label">Pixel ID</label>
+                                                <input type="text" class="form-control" id="facebookPixelId" placeholder="Your Facebook Pixel ID">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="alert alert-info">
+                                            <small><i class="bi bi-info-circle me-1"></i> Integrations help you connect BogoCares with other services to enhance functionality.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Backup & Restore -->
+                            <div class="tab-pane fade" id="backup">
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-white">Backup & Restore</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-4">
+                                            <h6 class="mb-3">Automatic Backups</h6>
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="autoBackup" checked>
+                                                <label class="form-check-label" for="autoBackup">Enable automatic backups</label>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="backupFrequency" class="form-label">Backup Frequency</label>
+                                                    <select class="form-select" id="backupFrequency">
+                                                        <option value="daily">Daily</option>
+                                                        <option value="weekly" selected>Weekly</option>
+                                                        <option value="monthly">Monthly</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="backupRetention" class="form-label">Retention Period</label>
+                                                    <select class="form-select" id="backupRetention">
+                                                        <option value="7">7 days</option>
+                                                        <option value="30" selected>30 days</option>
+                                                        <option value="90">90 days</option>
+                                                        <option value="365">1 year</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <h6 class="mb-3">Manual Backup</h6>
+                                            <p class="text-muted mb-3">Create a manual backup of your data.</p>
+                                            <button type="button" class="btn btn-outline-primary" id="createBackupBtn">
+                                                <i class="bi bi-cloud-arrow-up me-2"></i>Create Backup Now
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <h6 class="mb-3">Restore Data</h6>
+                                            <p class="text-muted mb-3">Restore your data from a previous backup.</p>
+                                            <div class="mb-3">
+                                                <label for="backupFile" class="form-label">Select Backup File</label>
+                                                <input class="form-control" type="file" id="backupFile">
+                                            </div>
+                                            <button type="button" class="btn btn-outline-warning" id="restoreBackupBtn">
+                                                <i class="bi bi-cloud-arrow-down me-2"></i>Restore from Backup
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="alert alert-warning">
+                                            <small><i class="bi bi-exclamation-triangle me-1"></i> Restoring from a backup will overwrite your current data. This action cannot be undone.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Shared Admin JS -->
+    <script src="admin.js"></script>
+    <!-- Settings Page Specific JS -->
+    <script src="settings.js"></script>
+</body>
+</html>

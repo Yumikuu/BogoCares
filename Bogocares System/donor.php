@@ -1,11 +1,24 @@
-
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'donor') {
+if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
-?>
+
+// Get user data
+require_once 'config/database.php';
+require_once 'models/User.php';
+
+$database = new Database();
+$db = $database->getConnection();
+$user = new User($db);
+$user->user_id = $_SESSION['user_id'];
+
+if (!$user->readOne()) {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +47,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'donor') {
 
         <!-- Desktop Navigation -->
         <nav class="header-nav">
-            <a href="recipient.html" class="nav-btn">
+            <a href="recipient.php" class="nav-btn">
                 <i class="bi bi-people"></i>
                 Switch to Recipient
             </a>
@@ -71,14 +84,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'donor') {
                         Help & Support
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item logout">
-                        <i class="bi bi-box-arrow-right"></i>
-                        Logout
-                    </a>
+                    <a href="logout.php" class="dropdown-item logout">
+    <i class="bi bi-box-arrow-right"></i>
+    Logout
+</a>
                 </div>
             </div>
             
-            <div class="profile-icon">J</div>
+            <div class="profile-icon"><?php echo strtoupper(substr($user->full_name, 0, 1)); ?></div>
         </nav>
 
         <!-- Burger Menu Button (Mobile Only) -->
@@ -93,7 +106,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'donor') {
     <div class="mobile-menu-overlay">
         <nav class="mobile-nav">
             <!-- Switch to Recipient Portal - ADDED TO MOBILE MENU -->
-            <a href="recipient.html" class="nav-btn mobile-nav-btn">
+            <a href="recipient.php" class="nav-btn mobile-nav-btn">
                 <i class="bi bi-people"></i>
                 Switch to Recipient
             </a>
@@ -129,13 +142,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'donor') {
                     <i class="bi bi-question-circle"></i>
                     Help & Support
                 </a>
-                <a href="#" class="mobile-settings-item logout">
-                    <i class="bi bi-box-arrow-right"></i>
-                    Logout
-                </a>
+                <a href="logout.php" class="mobile-settings-item logout">
+    <i class="bi bi-box-arrow-right"></i>
+    Logout
+</a>
             </div>
             
-            <div class="profile-icon mobile-profile">J</div>
+            <div class="profile-icon mobile-profile"><?php echo strtoupper(substr($user->full_name, 0, 1)); ?></div>
         </nav>
     </div>
 </header>
@@ -274,9 +287,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'donor') {
             <section id="donor-home" class="page-content">
                 <div class="welcome-section">
                     <div class="welcome-content">
-                        <h2 class="welcome-title">Welcome back, Juan Dela Cruz!</h2>
-                        <p class="welcome-message">Thank you for making a difference in Bogo City</p>
-                    </div>
+    <h2 class="welcome-title">Welcome back, <?php echo htmlspecialchars($user->full_name); ?>!</h2>
+    <p class="welcome-message">Thank you for making a difference in Bogo City</p>
+</div>
                 </div>
                 
                 <div class="campaign-section">
